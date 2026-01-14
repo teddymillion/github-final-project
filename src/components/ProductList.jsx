@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../features/cart/CartSlice';
-import Navbar from './Navbar';
 
 const products = {
   'Indoor Plants': [
@@ -42,7 +41,6 @@ const ProductList = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>Products</h1>
       <div>
         {Object.keys(products).map(category => (

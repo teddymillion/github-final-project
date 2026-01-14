@@ -1,24 +1,28 @@
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
 import AboutUs from './components/AboutUs';
 import ProductList from './components/ProductList';
 import CartItem from './components/CartItem';
 import Navbar from './components/Navbar';
 
 function App() {
+  const [view, setView] = useState('landing');
+
+  const handleGetStarted = () => setView('products');
+
   return (
-    <Routes>
-      <Route path="/" element={
+    <div>
+      <Navbar setView={setView} />
+      {view === 'landing' && (
         <div className="App">
-          <Navbar />
           <h1>Paradise Nursery</h1>
-          <Link to="/products"><button>Get Started</button></Link>
+          <button onClick={handleGetStarted}>Get Started</button>
         </div>
-      } />
-      <Route path="/about" element={<AboutUs />} />
-      <Route path="/products" element={<ProductList />} />
-      <Route path="/cart" element={<CartItem />} />
-    </Routes>
+      )}
+      {view === 'about' && <AboutUs />}
+      {view === 'products' && <ProductList />}
+      {view === 'cart' && <CartItem setView={setView} />}
+    </div>
   );
 }
 

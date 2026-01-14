@@ -1,10 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity, removeFromCart } from '../features/cart/CartSlice';
-import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
 
-const CartItem = () => {
+const CartItem = ({ setView }) => {
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
@@ -26,7 +24,6 @@ const CartItem = () => {
 
   return (
     <div>
-      <Navbar />
       <h1>Cart</h1>
       {cart.items.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -50,7 +47,7 @@ const CartItem = () => {
           ))}
           <h2>Total: ${cart.total}</h2>
           <button onClick={() => alert('Coming Soon')}>Checkout</button>
-          <Link to="/products"><button>Continue Shopping</button></Link>
+          <button onClick={() => setView('products')}>Continue Shopping</button>
         </div>
       )}
     </div>
